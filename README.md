@@ -74,36 +74,31 @@ colors: {
 }
 ```
 
-## 📧 Contact Form Setup
+## 📧 Contact Form Setup with W3Forms
 
-The contact form currently uses `mailto:` fallback. For better functionality:
+Your contact form is **already integrated with W3Forms**! You just need to get your access key:
 
-### Option 1: Formspree (Recommended)
-1. Sign up at [Formspree](https://formspree.io)
-2. Create a new form and get your endpoint
-3. Update `components/Contact.tsx`:
+### Quick Setup (2 minutes):
 
-```typescript
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault()
-  
-  const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-    method: 'POST',
-    body: JSON.stringify(formData),
-    headers: { 'Content-Type': 'application/json' },
-  })
-  
-  if (response.ok) {
-    alert('Message sent successfully!')
-    // Reset form
-  }
-}
-```
+1. **Get your FREE access key:**
+   - Go to [W3Forms.com](https://web3forms.com/)
+   - Click "Get Started" and enter your email
+   - You'll receive an access key instantly
 
-### Option 2: EmailJS
-1. Sign up at [EmailJS](https://www.emailjs.com/)
-2. Install: `npm install @emailjs/browser`
-3. Configure in `components/Contact.tsx`
+2. **Add your access key:**
+   - Open `components/Contact.tsx`
+   - Find line 34: `access_key: 'YOUR_W3FORMS_ACCESS_KEY_HERE'`
+   - Replace with your actual key: `access_key: 'abc123-your-key-here'`
+
+3. **Done!** Your form now sends submissions directly to your email.
+
+### Features included:
+- ✅ Form submissions sent to your email
+- ✅ Loading spinner during submission
+- ✅ Success/error messages
+- ✅ Automatic form reset after success
+- ✅ No backend code needed
+- ✅ 100% free for up to 250 submissions/month
 
 ## 🚀 Deployment
 
@@ -122,13 +117,15 @@ Your site will be live in ~2 minutes with automatic SSL and global CDN.
 
 ## ✅ Pre-Launch Checklist
 
+- [ ] **Get W3Forms access key** and add it to `Contact.tsx` (line 34)
 - [ ] Replace placeholder contact info (phone, email, ABN)
 - [ ] Update social media links in Footer.tsx
-- [ ] Set up contact form backend (Formspree/EmailJS)
-- [ ] Test all navigation and form submission
-- [ ] Check mobile responsiveness
+- [ ] Test form submission (make sure you receive emails)
+- [ ] Test all navigation links
+- [ ] Check mobile responsiveness on real devices
 - [ ] Run Lighthouse audit (aim for 90+ scores)
-- [ ] Test on multiple browsers
+- [ ] Test on multiple browsers (Chrome, Safari, Firefox)
+- [ ] Verify all images load correctly
 - [ ] Set up custom domain
 
 ## 🏗️ Build for Production

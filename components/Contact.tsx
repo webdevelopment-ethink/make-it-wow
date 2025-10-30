@@ -16,21 +16,57 @@ export default function Contact() {
     interest: '',
     message: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
     
-    // Build SMS link with form data
-    const message = encodeURIComponent(
-      `Booking Enquiry from ${formData.name}\n` +
-      `Phone: ${formData.phone}\n` +
-      `Event Date: ${formData.eventDate}\n` +
-      `Venue: ${formData.venue}\n` +
-      `Interest: ${formData.interest}\n` +
-      `Message: ${formData.message}`
-    )
-    
-    window.location.href = `sms:0400000000${navigator.platform === 'iPhone' ? '&' : '?'}body=${message}`
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '02752281-8fd7-41af-959e-260da4f6138c',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          event_date: formData.eventDate,
+          venue: formData.venue,
+          interest: formData.interest,
+          message: formData.message,
+          subject: `New Booking Enquiry from ${formData.name}`,
+        }),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitStatus('success')
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          eventDate: '',
+          venue: '',
+          interest: '',
+          message: '',
+        })
+        
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => setSubmitStatus('idle'), 5000)
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (
@@ -341,12 +377,64 @@ export default function Contact() {
                 />
               </div>
 
-              <button type="submit" className="btn-primary w-full">
-                Send via Text Message
+              <button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                {isSubmitting ? (
+                  <>
+                    <svg 
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-brand-dark" 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      fill="none" 
+                      viewBox="0 0 24 24"
+                    >
+                      <circle 
+                        className="opacity-25" 
+                        cx="12" 
+                        cy="12" 
+                        r="10" 
+                        stroke="currentColor" 
+                        strokeWidth="4"
+                      />
+                      <path 
+                        className="opacity-75" 
+                        fill="currentColor" 
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      />
+                    </svg>
+                    Sending...
+                  </>
+                ) : (
+                  'Send Enquiry'
+                )}
               </button>
 
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg text-center"
+                >
+                  <p className="font-semibold">✓ Message sent successfully!</p>
+                  <p className="text-sm mt-1">We'll get back to you within 24 hours.</p>
+                </motion.div>
+              )}
+
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg text-center"
+                >
+                  <p className="font-semibold">✗ Something went wrong</p>
+                  <p className="text-sm mt-1">Please try calling or texting us directly.</p>
+                </motion.div>
+              )}
+
               <p className="text-sm text-gray-600 text-center">
-                Sends directly to our phone • We reply within <span className="font-semibold text-brand-dark">24 hours</span>
+                Your message goes directly to our inbox • We reply within <span className="font-semibold text-brand-dark">24 hours</span>
               </p>
             </form>
           </motion.div>
