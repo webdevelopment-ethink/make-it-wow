@@ -5,7 +5,6 @@ import Highlights from '@/components/Highlights'
 import Gallery from '@/components/Gallery'
 import Packages from '@/components/Packages'
 import Reviews from '@/components/Reviews'
-import FAQs from '@/components/FAQs'
 import About from '@/components/About'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
@@ -21,7 +20,6 @@ export default function Home() {
         <Gallery />
         <Packages />
         <Reviews />
-        <FAQs />
         <About />
         <Contact />
       </main>

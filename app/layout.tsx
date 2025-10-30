@@ -49,7 +49,6 @@ export default function RootLayout({
     name: 'Make It Wow',
     image: 'https://makeitwow.com.au/og-image.jpg',
     telephone: '+61400000000',
-    email: 'hello@makeitwow.com.au',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Brisbane',

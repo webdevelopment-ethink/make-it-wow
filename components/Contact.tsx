@@ -20,19 +20,17 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     
-    // Build mailto link with form data
-    const subject = encodeURIComponent('Booking Enquiry from ' + formData.name)
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n` +
+    // Build SMS link with form data
+    const message = encodeURIComponent(
+      `Booking Enquiry from ${formData.name}\n` +
       `Phone: ${formData.phone}\n` +
       `Event Date: ${formData.eventDate}\n` +
-      `Venue/Suburb: ${formData.venue}\n` +
+      `Venue: ${formData.venue}\n` +
       `Interest: ${formData.interest}\n` +
-      `Message:\n${formData.message}`
+      `Message: ${formData.message}`
     )
     
-    window.location.href = `mailto:hello@makeitwow.com.au?subject=${subject}&body=${body}`
+    window.location.href = `sms:0400000000${navigator.platform === 'iPhone' ? '&' : '?'}body=${message}`
   }
 
   const handleChange = (
@@ -73,8 +71,7 @@ export default function Contact() {
               Quick Contact
             </h3>
             <p className="text-gray-200 mb-8 leading-relaxed">
-              Prefer to talk directly? Give us a call or send an email. We're
-              here to help make your event special.
+              Give us a call or send a message. We're here to help make your event special.
             </p>
 
             <div className="space-y-6 mb-8">
@@ -117,17 +114,17 @@ export default function Contact() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
                     />
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-400 mb-1">Email</p>
+                  <p className="text-sm text-gray-400 mb-1">Text Message</p>
                   <a
-                    href="mailto:hello@makeitwow.com.au"
+                    href="sms:0400000000"
                     className="text-xl font-semibold hover:text-brand-accent transition-colors break-words"
                   >
-                    hello@makeitwow.com.au
+                    Send us a text
                   </a>
                 </div>
               </div>
@@ -170,15 +167,15 @@ export default function Contact() {
                 Call Now
               </a>
               <a
-                href="mailto:hello@makeitwow.com.au?subject=Booking%20Enquiry"
+                href="sms:0400000000"
                 className="btn-secondary w-full sm:w-auto"
               >
-                Email Us
+                Message Us
               </a>
             </div>
 
             <p className="text-sm text-gray-400 mt-6 italic">
-              Prefer WhatsApp? Add your number in the form →
+              We reply to calls and texts within 24 hours
             </p>
           </motion.div>
 
@@ -190,7 +187,23 @@ export default function Contact() {
             className="bg-white rounded-2xl p-8 md:p-10 shadow-lg"
           >
             <h3 className="text-2xl font-heading font-bold text-brand-dark mb-6">
-              Send us a message
+              Find Us
+            </h3>
+            <div className="mb-8">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1826011.9556469915!2d150.6713821!3d-27.27997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2cf7f4dfc564a219%3A0x17d58006c2454a6d!2sMake%20it%20wow%20events%20hire!5e0!3m2!1sen!2sau!4v1698765432100!5m2!1sen!2sau"
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-xl"
+                title="Make It Wow Location"
+              />
+            </div>
+            <h3 className="text-2xl font-heading font-bold text-brand-dark mb-6">
+              Quick Enquiry Form
             </h3>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
@@ -329,11 +342,11 @@ export default function Contact() {
               </div>
 
               <button type="submit" className="btn-primary w-full">
-                Send Message
+                Send via Text Message
               </button>
 
               <p className="text-sm text-gray-600 text-center">
-                We reply within <span className="font-semibold text-brand-dark">24 hours</span>
+                Sends directly to our phone • We reply within <span className="font-semibold text-brand-dark">24 hours</span>
               </p>
             </form>
           </motion.div>

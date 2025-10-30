@@ -5,7 +5,6 @@ const navigation = [
   { name: 'What We Do', href: '#what-we-do' },
   { name: 'Gallery', href: '#gallery' },
   { name: 'Packages', href: '#packages' },
-  { name: 'FAQs', href: '#faqs' },
   { name: 'Reviews', href: '#reviews' },
   { name: 'Contact', href: '#contact' },
 ]
