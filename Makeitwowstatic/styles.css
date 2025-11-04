@@ -1230,7 +1230,7 @@ footer {
   }
 
   nav {
-    padding: 0.4rem 0 !important;
+    padding: 0.5rem 0 0.3rem 0 !important;
     margin: 0 !important;
     min-height: auto !important;
     height: auto !important;
@@ -1249,19 +1249,19 @@ footer {
   }
 
   .cta-mobile .btn-primary {
-    padding: 0.3rem 0.6rem !important;
-    font-size: 0.65rem !important;
+    padding: 0.4rem 0.65rem !important;
+    font-size: 0.7rem !important;
     white-space: nowrap;
-    line-height: 1.1 !important;
+    line-height: 1 !important;
     margin: 0 !important;
   }
 
   .mobile-menu-btn {
     display: flex;
     flex-shrink: 0;
-    width: 38px !important;
-    height: 38px !important;
-    padding: 0.3rem !important;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0.35rem !important;
     margin: 0 !important;
   }
 
