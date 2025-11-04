@@ -77,9 +77,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Lightbox functionality
 const galleryImages = [
   { src: 'images/gallery1.jpg', caption: 'LOVE • Warm White • Brisbane Reception' },
+  { src: 'images/gallery2.jpg', caption: 'LED Display • Brisbane Event' },
   { src: 'images/gallery3.jpg', caption: 'Custom Setup • Brisbane Event' },
   { src: 'images/gallery4.jpg', caption: 'LED letters outdoor • Warm Glow' },
   { src: 'images/gallery5.jpg', caption: 'Initials • Wedding Reception' },
+  { src: 'images/gallery6.jpg', caption: 'Event Setup • Brisbane' },
   { src: 'images/gallery7.jpg', caption: 'Romantic Setup • Warm White' },
   { src: 'images/gallery8.jpg', caption: 'Letters with Balloons • Brisbane' },
   { src: 'images/gallery9.jpg', caption: 'Modern Style • Cool White' }
