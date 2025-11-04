@@ -95,6 +95,10 @@ nav {
   margin: 0;
 }
 
+.cta-desktop {
+  margin-left: auto;
+}
+
 .logo {
   font-size: 1.5rem;
   font-weight: 800;
@@ -395,15 +399,6 @@ nav {
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.hero-quote-btn {
-  position: fixed;
-  top: 50%;
-  right: 2rem;
-  transform: translateY(-50%);
-  z-index: 999;
-  box-shadow: 0 4px 20px rgba(33, 150, 243, 0.4);
 }
 
 .hero-buttons {
@@ -1306,16 +1301,6 @@ footer {
   .hero p {
     font-size: 1rem;
     padding: 0 1rem;
-  }
-
-  .hero-quote-btn {
-    position: fixed;
-    top: auto;
-    bottom: 2rem;
-    right: 1rem;
-    transform: none;
-    font-size: 0.9rem;
-    padding: 0.65rem 1.25rem;
   }
 
   .hero-buttons {
