@@ -242,14 +242,7 @@ window.addEventListener('load', () => {
   }, 100);
 });
 
-// Parallax effect for hero
-window.addEventListener('scroll', () => {
-  const scrolled = window.pageYOffset;
-  const heroBg = document.querySelector('.hero-bg');
-  if (heroBg) {
-    heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
-  }
-});
+// Removed parallax effect to prevent glitchy scrolling
 
 // Prevent form resubmission on page reload
 if (window.history.replaceState) {
