@@ -95,14 +95,6 @@ nav {
   margin: 0;
 }
 
-@media (max-width: 768px) {
-  nav {
-    gap: 0.5rem;
-    padding: 0.25rem 0 !important;
-    margin: 0 !important;
-  }
-}
-
 .logo {
   font-size: 1.5rem;
   font-weight: 800;
@@ -1207,7 +1199,7 @@ footer {
   }
 
   #header {
-    padding: 0.6rem 0 !important;
+    padding: 0.4rem 0 !important;
     margin: 0 !important;
   }
 
@@ -1219,7 +1211,8 @@ footer {
   nav {
     padding: 0 !important;
     margin: 0 !important;
-    min-height: auto !important;
+    min-height: 0 !important;
+    height: auto !important;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1364,7 +1357,7 @@ footer {
   }
 
   #header {
-    padding: 0.55rem 0 !important;
+    padding: 0.35rem 0 !important;
     margin: 0 !important;
   }
 
@@ -1375,6 +1368,8 @@ footer {
 
   nav {
     gap: 0.75rem;
+    min-height: 0 !important;
+    height: auto !important;
   }
 
   .logo {
