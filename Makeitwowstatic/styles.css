@@ -1199,7 +1199,7 @@ footer {
   }
 
   #header {
-    padding: 0.4rem 0 !important;
+    padding: 0.5rem 0 0.2rem 0 !important;
     margin: 0 !important;
   }
 
@@ -1357,7 +1357,7 @@ footer {
   }
 
   #header {
-    padding: 0.35rem 0 !important;
+    padding: 0.45rem 0 0.15rem 0 !important;
     margin: 0 !important;
   }
 
