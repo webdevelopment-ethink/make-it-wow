@@ -325,20 +325,6 @@ nav {
   backface-visibility: hidden;
 }
 
-/* Responsive hero background for mobile */
-@media (max-width: 768px) {
-  .hero-bg img {
-    object-fit: cover;
-    object-position: center center;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-bg img {
-    object-fit: cover;
-    object-position: center center;
-  }
-}
 
 .hero-overlay {
   position: absolute;
@@ -1221,12 +1207,12 @@ footer {
   }
 
   #header {
-    padding: 0.5rem 0 !important;
+    padding: 0.75rem 0 !important;
     margin: 0 !important;
   }
 
   #header .container {
-    padding: 0 1rem !important;
+    padding: 0 1.25rem !important;
     margin: 0 !important;
   }
 
@@ -1237,12 +1223,12 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.75rem;
+    gap: 1rem;
   }
 
   .logo {
-    font-size: 1.2rem !important;
-    line-height: 1.2 !important;
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
     margin: 0 !important;
     padding: 0 !important;
     flex-shrink: 0;
@@ -1255,10 +1241,10 @@ footer {
   }
 
   .cta-mobile .btn-primary {
-    padding: 0.5rem 1rem !important;
-    font-size: 0.85rem !important;
+    padding: 0.65rem 1.25rem !important;
+    font-size: 1rem !important;
     white-space: nowrap;
-    line-height: 1.2 !important;
+    line-height: 1.3 !important;
     margin: 0 !important;
     display: inline-block;
   }
@@ -1266,25 +1252,26 @@ footer {
   .mobile-menu-btn {
     display: flex;
     flex-shrink: 0;
-    width: 44px !important;
-    height: 44px !important;
-    padding: 0.5rem !important;
+    width: 50px !important;
+    height: 50px !important;
+    padding: 0.6rem !important;
     margin: 0 !important;
     align-items: center;
     justify-content: center;
   }
 
   .mobile-menu-btn svg {
-    width: 24px !important;
-    height: 24px !important;
+    width: 28px !important;
+    height: 28px !important;
   }
 
-  /* Fix hero background zoom on mobile */
+  /* Remove zoom - fill entire space */
   .hero-bg img {
     object-fit: cover;
     object-position: center center;
-    transform: scale(0.85) translateZ(0);
-    transform-origin: center center;
+    transform: translateZ(0);
+    width: 100%;
+    height: 100%;
   }
 
   .mobile-menu {
@@ -1377,43 +1364,45 @@ footer {
   }
 
   #header {
-    padding: 0.4rem 0 !important;
+    padding: 0.65rem 0 !important;
     margin: 0 !important;
   }
 
   #header .container {
-    padding: 0 0.75rem !important;
+    padding: 0 1rem !important;
     margin: 0 !important;
   }
 
   nav {
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
 
   .logo {
-    font-size: 1rem !important;
-    line-height: 1.2 !important;
+    font-size: 1.3rem !important;
+    line-height: 1.3 !important;
   }
 
   .cta-mobile .btn-primary {
-    padding: 0.45rem 0.85rem !important;
-    font-size: 0.75rem !important;
+    padding: 0.55rem 1rem !important;
+    font-size: 0.9rem !important;
   }
 
   .mobile-menu-btn {
-    width: 40px !important;
-    height: 40px !important;
-    padding: 0.45rem !important;
+    width: 46px !important;
+    height: 46px !important;
+    padding: 0.55rem !important;
   }
 
   .mobile-menu-btn svg {
-    width: 22px !important;
-    height: 22px !important;
+    width: 26px !important;
+    height: 26px !important;
   }
 
-  /* More zoom out on smaller screens */
+  /* Full scale on mobile - no zoom */
   .hero-bg img {
-    transform: scale(0.75) translateZ(0);
+    transform: translateZ(0);
+    width: 100%;
+    height: 100%;
   }
 
   .hero h1 {
