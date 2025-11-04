@@ -1,23 +1,3 @@
-// Theme Toggle
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
-
-// Check for saved theme preference or default to dark mode
-const currentTheme = localStorage.getItem('theme') || 'dark';
-if (currentTheme === 'light') {
-  body.classList.add('light-mode');
-}
-
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    body.classList.toggle('light-mode');
-    
-    // Save preference
-    const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
-    localStorage.setItem('theme', theme);
-  });
-}
-
 // Mobile Menu Toggle
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
