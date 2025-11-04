@@ -7,17 +7,25 @@
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#FFB703;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#FB8500;stop-opacity:1" />
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2196F3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1565C0;stop-opacity:1" />
     </linearGradient>
   </defs>
   
   <!-- Background circle -->
-  <circle cx="50" cy="50" r="48" fill="#0A0A0A" stroke="url(#goldGradient)" stroke-width="2"/>
+  <circle cx="50" cy="50" r="48" fill="#FFFFFF" stroke="url(#blueGradient)" stroke-width="3"/>
   
-  <!-- "W" for Wow -->
-  <text x="50" y="72" font-family="Poppins, Arial, sans-serif" font-size="60" font-weight="800" 
-        text-anchor="middle" fill="url(#goldGradient)" filter="url(#glow)">W</text>
+  <!-- Lightning bolt representing LED/electricity -->
+  <path d="M 55 20 L 40 50 L 50 50 L 45 80 L 70 45 L 58 45 Z" 
+        fill="url(#blueGradient)" 
+        filter="url(#glow)"
+        stroke="#1565C0" 
+        stroke-width="1"/>
+  
+  <!-- Small sparkles around -->
+  <circle cx="25" cy="30" r="2" fill="#2196F3" filter="url(#glow)"/>
+  <circle cx="75" cy="35" r="2.5" fill="#2196F3" filter="url(#glow)"/>
+  <circle cx="30" cy="70" r="2" fill="#1565C0" filter="url(#glow)"/>
+  <circle cx="75" cy="70" r="2" fill="#1565C0" filter="url(#glow)"/>
 </svg>
-
