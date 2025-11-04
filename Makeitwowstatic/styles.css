@@ -87,21 +87,12 @@ a {
 }
 
 nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
   align-items: center;
   padding: 1rem 0;
-  gap: 0.75rem;
+  gap: 2rem;
   margin: 0;
-}
-
-.nav-links {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.cta-desktop {
-  margin-left: auto;
 }
 
 .logo {
@@ -109,18 +100,25 @@ nav {
   font-weight: 800;
   font-family: 'Poppins', sans-serif;
   color: #1A1A1A;
-  margin-right: 3rem;
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.cta-desktop {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .logo span {
   color: #2196F3;
 }
 
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-}
 
 .nav-links a {
   color: #606060;
