@@ -71,11 +71,20 @@ nav {
   justify-content: space-between;
   padding: 1rem 0;
   gap: 0.75rem;
+  margin: 0;
 }
 
 @media (max-width: 768px) {
   nav {
     gap: 0.5rem;
+    padding: 0.25rem 0 !important;
+    margin: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    padding: 0.2rem 0 !important;
   }
 }
 
@@ -1198,39 +1207,47 @@ footer {
 
   #header {
     padding: 0 !important;
+    margin: 0 !important;
   }
 
   #header .container {
     padding: 0 1rem !important;
+    margin: 0 !important;
   }
 
   nav {
-    padding: 0.35rem 0 !important;
+    padding: 0.25rem 0 !important;
+    margin: 0 !important;
     min-height: auto !important;
   }
 
   .logo {
-    font-size: 1.1rem !important;
-    line-height: 1;
+    font-size: 1rem !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .cta-mobile {
     display: block;
+    margin: 0 !important;
   }
 
   .cta-mobile .btn-primary {
-    padding: 0.35rem 0.7rem !important;
-    font-size: 0.7rem !important;
+    padding: 0.3rem 0.6rem !important;
+    font-size: 0.65rem !important;
     white-space: nowrap;
-    line-height: 1.2;
+    line-height: 1.1 !important;
+    margin: 0 !important;
   }
 
   .mobile-menu-btn {
     display: flex;
     flex-shrink: 0;
-    width: 40px !important;
-    height: 40px !important;
-    padding: 0.35rem !important;
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0.3rem !important;
+    margin: 0 !important;
   }
 
   .mobile-menu {
@@ -1324,37 +1341,44 @@ footer {
 
   #header {
     padding: 0 !important;
+    margin: 0 !important;
   }
 
   #header .container {
     padding: 0 0.75rem !important;
+    margin: 0 !important;
   }
 
   nav {
-    padding: 0.3rem 0 !important;
+    padding: 0.2rem 0 !important;
+    margin: 0 !important;
     min-height: auto !important;
   }
 
   .logo {
-    font-size: 0.9rem !important;
-    line-height: 1;
+    font-size: 0.85rem !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .cta-mobile .btn-primary {
-    padding: 0.3rem 0.55rem !important;
-    font-size: 0.62rem !important;
-    line-height: 1.2;
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.6rem !important;
+    line-height: 1.1 !important;
+    margin: 0 !important;
   }
 
   .mobile-menu-btn {
-    width: 36px !important;
-    height: 36px !important;
-    padding: 0.3rem !important;
+    width: 35px !important;
+    height: 35px !important;
+    padding: 0.25rem !important;
+    margin: 0 !important;
   }
 
   .mobile-menu-btn svg {
-    width: 18px !important;
-    height: 18px !important;
+    width: 16px !important;
+    height: 16px !important;
   }
 
   .hero h1 {
