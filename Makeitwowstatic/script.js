@@ -74,26 +74,54 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Lightbox functionality
-const galleryImages = [
-  { src: 'images/gallery1.jpg', caption: 'LOVE • Warm White • Brisbane Reception' },
-  { src: 'images/gallery2.jpg', caption: 'LED Display • Brisbane Event' },
-  { src: 'images/gallery3.jpg', caption: 'Custom Setup • Brisbane Event' },
-  { src: 'images/gallery4.jpg', caption: 'LED letters outdoor • Warm Glow' },
-  { src: 'images/gallery5.jpg', caption: 'Initials • Wedding Reception' },
-  { src: 'images/gallery6.jpg', caption: 'Event Setup • Brisbane' },
-  { src: 'images/gallery7.jpg', caption: 'Romantic Setup • Warm White' },
-  { src: 'images/gallery8.jpg', caption: 'Letters with Balloons • Brisbane' },
-  { src: 'images/gallery9.jpg', caption: 'Modern Style • Cool White' }
-];
+// Lightbox functionality with separate galleries
+const galleries = {
+  'letters': [
+    { src: 'images/Letters/gallery1.jpg', caption: 'LED Letters Display', type: 'image' },
+    { src: 'images/Letters/gallery3.jpg', caption: 'Custom Letters Setup', type: 'image' },
+    { src: 'images/Letters/gallery4.jpg', caption: 'Outdoor Letters Display', type: 'image' },
+    { src: 'images/Letters/gallery5.jpg', caption: 'Elegant Letters Setup', type: 'image' },
+    { src: 'images/Letters/gallery6.jpg', caption: 'Event Letters Setup', type: 'image' },
+    { src: 'images/Letters/gallery8.jpg', caption: 'Letters with Balloons', type: 'image' },
+    { src: 'images/Letters/hero.jpg', caption: 'LED Letters Display', type: 'image' },
+    { src: 'images/videos/b6c5110b-516e-4835-b872-0aecf25c326e.mov', caption: 'LED Letters Video', type: 'video' },
+    { src: 'images/videos/c7a6bf98-be6b-4c99-9b95-67bdb0910234.mov', caption: 'LED Letters Video', type: 'video' }
+  ],
+  'white-numbers': [
+    { src: 'images/White Numbers/about.jpg', caption: 'White LED Numbers', type: 'image' },
+    { src: 'images/White Numbers/gallery2.jpg', caption: 'White Numbers Display', type: 'image' },
+    { src: 'images/White Numbers/gallery7.jpg', caption: 'White Numbers Setup', type: 'image' },
+    { src: 'images/White Numbers/gallery9.jpg', caption: 'Modern White Numbers', type: 'image' },
+    { src: 'images/White Numbers/image000005.jpg', caption: 'White Numbers Display', type: 'image' }
+  ],
+  'coloured-numbers': [
+    { src: 'images/Coloured Numers/image000001.jpg', caption: 'Colour-Changing Numbers', type: 'image' },
+    { src: 'images/Coloured Numers/image000002.jpg', caption: 'Coloured Numbers Display', type: 'image' },
+    { src: 'images/Coloured Numers/image000004.JPG', caption: 'Coloured Numbers Setup', type: 'image' },
+    { src: 'images/Coloured Numers/image000005 2.JPG', caption: 'Colour Effects Display', type: 'image' },
+    { src: 'images/Coloured Numers/image000006.JPG', caption: 'Coloured Numbers Event', type: 'image' },
+    { src: 'images/Coloured Numers/image000007.jpeg', caption: 'Coloured Numbers Display', type: 'image' }
+  ],
+  'neon': [
+    { src: 'images/Neon Letters/image000000 2.jpg', caption: 'Custom Neon Sign', type: 'image' },
+    { src: 'images/Neon Letters/image000000.jpg', caption: 'Neon Letters Display', type: 'image' },
+    { src: 'images/Neon Letters/image000003.jpg', caption: 'Neon Sign Setup', type: 'image' },
+    { src: 'images/Neon Letters/image000004.jpg', caption: 'Neon Letters Event', type: 'image' },
+    { src: 'images/Neon Letters/image000006.jpg', caption: 'Custom Neon Display', type: 'image' },
+    { src: 'images/Neon Letters/image000007.jpg', caption: 'Neon Letters Setup', type: 'image' },
+    { src: 'images/Neon Letters/image000008.jpg', caption: 'Neon Sign Event', type: 'image' }
+  ]
+};
 
+let currentGallery = 'letters';
 let currentImageIndex = 0;
 const lightbox = document.getElementById('lightbox');
 const lightboxImage = document.getElementById('lightbox-image');
 const lightboxCaption = document.getElementById('lightbox-caption');
 const lightboxCounter = document.getElementById('lightbox-counter');
 
-function openLightbox(index) {
+function openLightbox(gallery, index) {
+  currentGallery = gallery;
   currentImageIndex = index;
   updateLightbox();
   lightbox.classList.add('active');
@@ -101,25 +129,69 @@ function openLightbox(index) {
 }
 
 function closeLightbox() {
+  // Stop any playing videos
+  const lightboxContent = document.querySelector('.lightbox-content');
+  const video = lightboxContent.querySelector('video');
+  if (video) {
+    video.pause();
+    video.currentTime = 0;
+  }
+  
   lightbox.classList.remove('active');
   document.body.style.overflow = '';
 }
 
 function nextImage() {
+  const galleryImages = galleries[currentGallery];
   currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
   updateLightbox();
 }
 
 function previousImage() {
+  const galleryImages = galleries[currentGallery];
   currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
   updateLightbox();
 }
 
 function updateLightbox() {
-  const image = galleryImages[currentImageIndex];
-  lightboxImage.src = image.src;
-  lightboxImage.alt = image.caption;
-  lightboxCaption.textContent = image.caption;
+  const galleryImages = galleries[currentGallery];
+  const media = galleryImages[currentImageIndex];
+  
+  // Clear previous content
+  const lightboxContent = document.querySelector('.lightbox-content');
+  const existingMedia = lightboxContent.querySelector('img, video');
+  if (existingMedia) {
+    existingMedia.remove();
+  }
+  
+  // Create appropriate media element
+  if (media.type === 'video') {
+    const video = document.createElement('video');
+    video.src = media.src;
+    video.controls = true;
+    video.autoplay = true;
+    video.loop = true;
+    video.style.maxWidth = '100%';
+    video.style.maxHeight = '80vh';
+    video.style.objectFit = 'contain';
+    video.style.borderRadius = '0.5rem';
+    video.style.margin = '0 auto';
+    video.style.display = 'block';
+    lightboxContent.insertBefore(video, lightboxCaption);
+  } else {
+    const img = document.createElement('img');
+    img.src = media.src;
+    img.alt = media.caption;
+    img.style.maxWidth = '100%';
+    img.style.maxHeight = '80vh';
+    img.style.objectFit = 'contain';
+    img.style.borderRadius = '0.5rem';
+    img.style.margin = '0 auto';
+    img.style.display = 'block';
+    lightboxContent.insertBefore(img, lightboxCaption);
+  }
+  
+  lightboxCaption.textContent = media.caption;
   lightboxCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
 }
 
@@ -232,6 +304,24 @@ document.querySelectorAll('.card, .package-card, .review-card, .feature-box, .ga
 
 // Set current year in footer
 document.getElementById('current-year').textContent = new Date().getFullYear();
+
+// Auto-play videos on hover in gallery
+document.addEventListener('DOMContentLoaded', () => {
+  const videoItems = document.querySelectorAll('.video-item video');
+  
+  videoItems.forEach(video => {
+    const parent = video.closest('.video-item');
+    
+    parent.addEventListener('mouseenter', () => {
+      video.play().catch(err => console.log('Autoplay prevented:', err));
+    });
+    
+    parent.addEventListener('mouseleave', () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
+});
 
 // Add loading animation
 window.addEventListener('load', () => {
