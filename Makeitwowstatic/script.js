@@ -211,7 +211,7 @@ lightbox.addEventListener('click', (e) => {
   }
 });
 
-// Contact form handling
+// Contact form handling with Web3Forms
 const contactForm = document.getElementById('contact-form');
 const formMessage = document.getElementById('form-message');
 
@@ -220,53 +220,60 @@ if (contactForm) {
     e.preventDefault();
     
     const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData);
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
     
     // Validate required fields
-    if (!data.name || !data.email) {
+    const name = formData.get('name');
+    const email = formData.get('email');
+    
+    if (!name || !email) {
       showFormMessage('Please fill in all required fields.', 'error');
       return;
     }
     
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
+    if (!emailRegex.test(email)) {
       showFormMessage('Please enter a valid email address.', 'error');
       return;
     }
     
-    // Show success message (in a real implementation, you'd send this to a server)
-    console.log('Form submitted:', data);
+    // Disable button and show loading state
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
     
-    showFormMessage(
-      'Thank you for your enquiry! We\'ll get back to you within 24 hours.',
-      'success'
-    );
-    
-    contactForm.reset();
-    
-    // In a real implementation, you would send the data to your email service
-    // Example using FormSubmit.co or EmailJS:
-    /*
     try {
-      const response = await fetch('YOUR_FORM_ENDPOINT', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+        body: formData
       });
       
-      if (response.ok) {
-        showFormMessage('Thank you! We\'ll get back to you within 24 hours.', 'success');
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        showFormMessage(
+          'Thank you for your enquiry! We\'ll get back to you within 24 hours.',
+          'success'
+        );
         contactForm.reset();
       } else {
-        showFormMessage('Oops! Something went wrong. Please try again.', 'error');
+        showFormMessage(
+          'Oops! Something went wrong. Please try again or call us directly.',
+          'error'
+        );
       }
     } catch (error) {
-      showFormMessage('Network error. Please check your connection.', 'error');
+      console.error('Form submission error:', error);
+      showFormMessage(
+        'Network error. Please check your connection and try again.',
+        'error'
+      );
+    } finally {
+      // Re-enable button
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
     }
-    */
   });
 }
 
